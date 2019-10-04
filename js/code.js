@@ -1,31 +1,57 @@
-var input = document.getElementbyId("cadena").value;
-var signos = ['x', '/', '+', '-'];
+var input; 
+var signos = ['*', '/', '+', '-'];
 var aux1 = "";
 var aux2 = "";
 var auxSigno = "";
 var resuelto = 0;
-var encontrado = true;
+var encontrado = false;
 
-function operar(){
+function lectura(){
+    input = document.getElementById("ans").value;
     do{
         for (i = 0; i < input.length; i++) {
-           if(!novalor(input[i]) && encontrado==false){
-                aux1+=input[i];
-           } else if(!novalor(input[i]) && encontrado==true){
+           if(!(novalor(input[i]))){
+               if (encontrado){
+                    aux1+=input[i];
+                    console.log(aux1);
+               }else {
                 segundoValor()
-           } else {
+               }    
+           }  else {
                 auxSigno=input[i];
            }
-        }        
-    }while(encontrado);
+        }   
+    }while(encontrar());
 
     console.log(input);
+}
+
+function novalor(a){
+    for (i = 0; i < signos.length; i++) {
+        if (a === signos[i]){
+            encontrado = true;
+            return true;
+        }
+    }
+    return false;
+}
+
+function encontrar(){
+    for (i = 0; i < input.length; i++) {
+        for (j = 0; j < signos.length; j++) {
+           if (input[i] === signos[j]){
+               return true;
+           }
+        }
+    }
+    return false;
 }
 
 function segundoValor(valor){
     for (j = i+1; j < input.length; j++) {
         if(!novalor(input[j])){
             aux2+=input[j];
+            console.log(aux1);
         }else {
             if(signos.indexOf(input[j]) <= signos.indexOf(auxSigno)){
                 operar(auxSigno);
@@ -36,31 +62,24 @@ function segundoValor(valor){
             } else {
                 aux1 = aux2;
                 auxSigno = input[i];
+                console.log(aux1);
             }
         }
     }
 }
 
 function operar(signo){
-    switch(signo){
-        case 'x': resuelto = parseFloat(aux1) * parseFloat(aux2); break;
-        case '/': resuelto = parseFloat(aux1) / parseFloat(aux2); break;
-        case '+': resuelto = parseFloat(aux1) + parseFloat(aux2); break;
-        case '-': resuelto = parseFloat(aux1) - parseFloat(aux2); break;
-
-        default: console.log("opc no implementada");
+    if (signo === '*'){
+        resuelto = parseFloat(aux1) * parseFloat(aux2);
+    } else if (signo === '/') {
+        resuelto = parseFloat(aux1) / parseFloat(aux2);
+    } else if (signo === '+') {
+        resuelto = parseFloat(aux1) + parseFloat(aux2);
+    } else if (signo === '-'){
+        resuelto = parseFloat(aux1) - parseFloat(aux2);
+    } else {
+        console.log("opc no implementada");
     }
 }
 
 
-function novalor(a){
-    for (i = 0; i < signos.length; i++) {
-        if (a === signos[i]){
-            encontrado = true;
-            return true;
-        }
-    }
-    
-    encontrado = false;
-    return false;
-}
