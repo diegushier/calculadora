@@ -6,7 +6,7 @@ var auxSigno = "";
 var resuelto = 0;
 var encontrado = true;
 
-function lectura(){
+function operar(){
     do{
         for (i = 0; i < input.length; i++) {
            if(!novalor(input[i]) && encontrado==false){
@@ -18,6 +18,8 @@ function lectura(){
            }
         }        
     }while(encontrado);
+
+    console.log(input);
 }
 
 function segundoValor(valor){
@@ -27,6 +29,10 @@ function segundoValor(valor){
         }else {
             if(signos.indexOf(input[j]) <= signos.indexOf(auxSigno)){
                 operar(auxSigno);
+                var cadena = aux1+auxSigno+aux2;
+                var aux = input.replace(cadena, resuelto);
+                input = aux;
+
             } else {
                 aux1 = aux2;
                 auxSigno = input[i];
@@ -41,6 +47,7 @@ function operar(signo){
         case '/': resuelto = parseFloat(aux1) / parseFloat(aux2); break;
         case '+': resuelto = parseFloat(aux1) + parseFloat(aux2); break;
         case '-': resuelto = parseFloat(aux1) - parseFloat(aux2); break;
+
         default: console.log("opc no implementada");
     }
 }
@@ -52,8 +59,8 @@ function novalor(a){
             encontrado = true;
             return true;
         }
-        
     }
+    
     encontrado = false;
     return false;
 }

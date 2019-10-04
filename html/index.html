@@ -3,23 +3,16 @@
 <html lang="es">
 
 <head>
-
 	<meta charset="utf-8">
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- Etiqueta para adaptar a @media -->
-    <LINK REL="stylesheet" TYPE="text/css" HREF="../css/style.css">
+  <LINK REL="stylesheet" TYPE="text/css" HREF="../css/style.css">
 </head>
 
 <body>
 
 <!-- Empieza codigo calculadora html-->
 
-  <form name="calculator">
-
-    <h3>Calculadora</h3>
-
-    <p>Haz algun calculo para ver el resultado.</p>
-
+  <form name="calculadora">
     <input type="textfield" name="ans" value="">
 
     <br>
@@ -60,9 +53,11 @@
 
     <input type="button" value="/" onClick="document.calculator.ans.value+='/'">
 
-    <input type="button" value="=" onClick="document.calculator.ans.value=eval(document.calculator.ans.value)">
+    <input type="button" value="=" onClick="operar()">
 
     </form>
+
+    <script type="text/javascript" src="../js/code.js"></script>
 
 </body>
 
