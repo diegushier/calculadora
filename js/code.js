@@ -16,7 +16,7 @@ function lectura(){
         if (cursor > -1){
             auxSigno = input.charAt(cursor);
             //console.log(auxSigno);
-            for(j = 0; j < input.length; i++){
+            for(j = 0; j < input.length; j++){
                 for(k = cursor-1; comparar(k); k--){
                     aux1+=input[k];
                 }
@@ -38,12 +38,11 @@ function lectura(){
 }
 
 function comparar(caracter){
-    for(m = 0; m < signos.length; m++){
-        if (caracter === signos[m]){
-            return true;
-        }
+    if (signos.indexOf(caracter) > -1){
+        return true;
+    } else {
+        return false;
     }
-    return false;
 }
 
 function operar(){
@@ -51,7 +50,7 @@ function operar(){
     console.log(aux1);
     console.log(aux2);
     //return;
-//
+
     //if (signos.indexOf(auxSigno) == 0){
     //    resuelto = parseFloat(aux1) * parseFloat(aux2);
     //    console.log(resuelto + " opc1");
