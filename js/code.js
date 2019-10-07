@@ -39,11 +39,13 @@ function lectura(){
 }
 
 function comparar(caracter){
-    if (signos.indexOf(caracter) > -1){
-        return true;
-    } else {
-        return false;
+    for (s = 0; s < signos.length; s++){
+        if (caracter === signos[s]){
+            return true;
+        }
     }
+
+    return false;
 }
 
 function operar(){
