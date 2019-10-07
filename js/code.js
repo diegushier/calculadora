@@ -6,67 +6,75 @@ var aux2 = "";
 var auxSigno = "";
 var resuelto = 0;
 var encontrado = false;
+var noRoto = true;
+
+var vueltas = 0;
 
 function lectura(){
-  //modificar según esquema.
+  //Pensar como recorrer todos los caracteres
+  //split()
     input = document.getElementById("ans").value;
-    console.log(input);
     for(i = 0; i < signos.length; i++){
-        cursor =  input.indexOf(signos[i]);
-        //console.log(cursor);
-        if (cursor > -1){
-            auxSigno = input.charAt(cursor);
-            //console.log(auxSigno);
-            for(j = 0; j < input.length; j++){
-                for(k = cursor-1; comparar(k); k--){
+        do{
+            cursor =  input.indexOf(signos[i]);
+            if (cursor > -1){
+                auxSigno = input.charAt(cursor);
+                encontrado = true;
+            
+                for(k = cursor-1;k >= 0 && comparar(k); k--){
+                    console.log(input[k]);
                     aux1+=input[k];
                 }
-
-                for(l = cursor+1; comparar(l); l++){
+                for(l = cursor+1; l < input.length && comparar(l); l++){
+                    console.log(input[l]);
                     aux2+=input[l];
                 }
-
-
                 operar();
                 var cadena = aux1+auxSigno+aux2;
                 var auxCadena = input.replace(cadena, resuelto);
                 input = auxCadena;
+            
+            
+            } else {
+                encontrado = false;
             }
-        }
+        }while (encontrado);
     }
 
+    //Mostrar La variable
+    aux1 = input;
+    input = document.getElementById("ans").value = "";
+    input = document.getElementById("ans").value = aux1;
     console.log(input);
+    aux1="";    //reinicia la variable
+    aux2="";    //reinicia la variable
+
 }
 
 function comparar(caracter){
-    for (s = 0; s < signos.length; s++){
-        if (caracter === signos[s]){
-            return true;
-        }
+    if(signos.indexOf(caracter) > -1){
+        return false;
+    } else{
+        return true;
     }
-
-    return false;
 }
 
-function operar(){
-    console.log(auxSigno);
-    console.log(aux1);
-    console.log(aux2);
-    //return;
 
-    //if (signos.indexOf(auxSigno) == 0){
-    //    resuelto = parseFloat(aux1) * parseFloat(aux2);
-    //    console.log(resuelto + " opc1");
-    //} else if (signos.indexOf(auxSigno) == 1) {
-    //    resuelto = parseFloat(aux1) / parseFloat(aux2);
-    //    console.log(resuelto + " opc2");
-    //} else if (signos.indexOf(auxSigno) == 2) {
-    //    resuelto = parseFloat(aux1) + parseFloat(aux2);
-    //    console.log(resuelto + " opc3")
-    //} else if (signos.indexOf(auxSigno) == 3){
-    //    resuelto = parseFloat(aux1) - parseFloat(aux2);
-    //    console.log(resuelto + " opc4")
-    //} else {
-    //    console.log("opc no implementada");
-    //}
+//Opera según función
+function operar(){
+    if (signos.indexOf(auxSigno) == 0){
+        resuelto = parseInt(aux1) * parseInt(aux2);
+        console.log(resuelto + " opc1");
+    } else if (signos.indexOf(auxSigno) == 1) {
+        resuelto = parseInt(aux1) / parseInt(aux2);
+        console.log(resuelto + " opc2");
+    } else if (signos.indexOf(auxSigno) == 2) {
+        resuelto = parseInt(aux1) + parseInt(aux2);
+        console.log(resuelto + " opc3")
+    } else if (signos.indexOf(auxSigno) == 3){
+        resuelto = parseInt(aux1) - parseInt(aux2);
+        console.log(resuelto + " opc4")
+    } else {
+        console.log("opc no implementada");
+    }
 }
