@@ -8,6 +8,7 @@ var resuelto = 0;
 var encontrado = false;
 
 function lectura(){
+  //modificar según esquema.
     input = document.getElementById("ans").value;
     console.log(input);
     for(i = 0; i < signos.length; i++){
