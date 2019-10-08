@@ -6,6 +6,9 @@ var aux2 = "";
 var auxSigno = "";
 var resuelto = 0;
 var encontrado = false;
+var noRoto = true;
+
+var vueltas = 0;
 
 function lectura(){
   //Pensar como recorrer todos los caracteres
