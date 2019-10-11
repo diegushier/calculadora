@@ -18,7 +18,9 @@ function lectura(){
         resuelto = cursor.exec(input);
 
         console.log(resuelto);
-        console.log(parseInt(RegExp.$1) + parseInt(RegExp.$2));
+        console.log("Valor 1" + RegExp.$1);
+        console.log("Valor 2" + RegExp.$2);
+
         resuelto = null;
     }
 }
