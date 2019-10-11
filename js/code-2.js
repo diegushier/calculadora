@@ -16,7 +16,7 @@ function lectura(){
     for(i = 0; i < exp.length; i++){
         cursor = new RegExp(exp[i]);
         resuelto = cursor.exec(input);
-
+        //console.log(input);
         console.log(resuelto);
         console.log("Valor 1" + RegExp.$1);
         console.log("Valor 2" + RegExp.$2);
