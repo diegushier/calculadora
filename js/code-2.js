@@ -16,10 +16,10 @@ function lectura(){
     for(i = 0; i < exp.length; i++){
         cursor = new RegExp(exp[i]);
         resuelto = cursor.exec(input);
-
+        //console.log(input);
         console.log(resuelto);
-        console.log(parseInt(RegExp.$1) + parseInt(RegExp.$2));
-        resuelto = null;
+        console.log(RegExp.$0);
+        //resuelto = null;
     }
 }
 
